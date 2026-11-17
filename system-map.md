@@ -1,5 +1,4 @@
 ---
-sidebar_position: 5
 title: Sequence diagrams and the system map
 ---
 
@@ -24,7 +23,7 @@ All of these have to hold:
 
 If any check fails, the review still completes. There is simply no diagram on that MR.
 
-The diagram is valid Mermaid `sequenceDiagram` syntax, posted on the MR summary and stored with that review. Participants are limited to actors evidenced by the diff (about eight at most).
+The diagram is valid Mermaid `sequenceDiagram` syntax, posted on the MR summary (collapsed) and stored with that review. Participants are limited to actors evidenced by the diff (about eight at most).
 
 ## How the system map is built
 
@@ -35,6 +34,8 @@ Each generated sequence is parsed and folded into the repository graph. No extra
 - The aggregate is rendered as Mermaid **`flowchart TD`**, not `sequenceDiagram`. Merged flows have no single timeline; drawing them as one sequence would invent an order the data does not have.
 
 A merge failure is fail-soft. The MR still gets its own sequence; the repository map is left as it was.
+
+Turning `sequence_diagrams` off does not remove diagrams already made; no new ones are produced.
 
 ## Empty is normal
 

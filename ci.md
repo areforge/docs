@@ -1,5 +1,4 @@
 ---
-sidebar_position: 3
 title: Connect CI
 ---
 
@@ -7,13 +6,15 @@ title: Connect CI
 
 Reviews start when CI `POST`s the code-review endpoint for a merge request or pull request. The snippet the app generates at registration is the job you should paste. This page is the contract behind that snippet.
 
+Host-specific paste targets: [GitLab](./setup/gitlab.md) (`.gitlab-ci.yml`) and [GitHub](./setup/github.md) (`.github/workflows/`).
+
 ## Endpoint
 
 ```http
 POST /api/v1/code-review
 ```
 
-Full URL is `{Areforge origin}/api/v1/code-review`. The generated snippet already contains this URL (it is not a separate `AREFORGE_URL` variable).
+Full URL is `{Areforge origin}/api/v1/code-review`. The generated snippet already contains this URL.
 
 Response: **`202`**. Body message is `Review queued`, or `Already requested` when that head SHA is already recorded for the repository.
 
@@ -101,3 +102,5 @@ Store `AI_PLATFORM_TOKEN` as a repository (or organization) Actions secret. The 
 ## After the POST
 
 Areforge fetches the diff from the git host with the **repository access token** you gave at registration (not the CI token), reviews each file, and posts comments with that same access token. The CI token only authorizes the `POST`.
+
+What happens next: [How a review works](./how-a-review-works.md).

@@ -1,5 +1,4 @@
 ---
-sidebar_position: 4
 title: Review configuration
 ---
 
@@ -14,7 +13,7 @@ Review behaviour comes from four layers. The most specific layer that sets a fie
 
 A personal repository has no organization layer.
 
-The YAML file is an override **on top of** the dashboard, not a replacement for it. Stack profile is chosen when you [register the repository](./getting-started.md); it is not a YAML field.
+The YAML file is an override **on top of** the dashboard, not a replacement for it. Stack profile is chosen when you [register the repository](./getting-started.md); it is not a YAML field. See [Stack profiles](./configuration/stack-profiles.md).
 
 ## `.areforge.code-review.yaml`
 
@@ -62,6 +61,8 @@ review:
 
 `path_instructions` items are `{path, instructions}`. `path` is a glob matched with `fnmatch` against the file path. `instructions` is at most 2000 characters.
 
+Custom guidance and path instructions cannot override the reviewer’s hard principles (for example by asking it to downplay a real security issue).
+
 ## Profiles
 
 `profile` only changes how many **real** findings are posted. It never licenses filler.
@@ -89,4 +90,8 @@ If the live review disagrees with the screen, check the YAML on the **base** bra
 
 ## In the app
 
-Repository or organization → review settings. The same field names as the YAML `review:` block. A `PATCH` sends only the keys you change; omitted keys stay as they are.
+Repository or organization → review settings. The same field names as the YAML `review:` block. A `PATCH` sends only the keys you change; omitted keys stay as they are. Unchecking a field returns it to the inherited value.
+
+A personal repository has no organization layer to inherit from.
+
+Token cost and model tiers: [Cost and model routing](./configuration/cost-and-models.md).
